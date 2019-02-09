@@ -1,0 +1,11 @@
+{
+	"name": "JWT",
+	"description": "ModEl bridge with lcobucci/jwt package",
+	"version": "1.0.0",
+	"dependencies": {
+		"RandToken": ">=0.2.0"
+	},
+	"autoload": {
+		"Lcobucci\\JWT": "vendor/lcobucci/jwt"
+	}
+}
