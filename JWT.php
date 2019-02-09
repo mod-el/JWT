@@ -1,5 +1,6 @@
 <?php namespace Model\JWT;
 
+use Lcobucci\JWT\Claim;
 use Model\Core\Module;
 use Lcobucci\JWT\Builder;
 use Lcobucci\JWT\Signer\Hmac\Sha512;
@@ -149,7 +150,9 @@ class JWT extends Module
 		if (!$token->validate($data))
 			return null;
 
-		return $token->getClaims();
+		return array_map(function (Claim $claim) {
+			return $claim->getValue();
+		}, $token->getClaims());
 	}
 
 	/**
