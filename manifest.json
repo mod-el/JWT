@@ -1,11 +1,8 @@
 {
 	"name": "JWT",
-	"description": "ModEl bridge with lcobucci/jwt package",
-	"version": "1.0.0",
+	"description": "JWT handler (requires firebase/php-jwt via Composer)",
+	"version": "2.0.0",
 	"dependencies": {
 		"RandToken": ">=0.2.0"
-	},
-	"autoload": {
-		"Lcobucci\\JWT": "vendor/lcobucci/jwt"
 	}
 }
