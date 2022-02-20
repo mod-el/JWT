@@ -1,8 +1,9 @@
 {
 	"name": "JWT",
 	"description": "JWT handler (requires firebase/php-jwt via Composer)",
-	"version": "2.0.0",
+	"version": "3.0.0",
 	"dependencies": {
+		"Core": ">=3.0.0",
 		"RandToken": ">=0.2.0"
 	}
 }
