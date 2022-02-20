@@ -37,7 +37,7 @@ class JWT extends Module
 		if ($config['fixed-key']) {
 			return $config['fixed-key'];
 		} elseif ($config['redis-class']) {
-			$redisIndex = ($config['redix-prefix'] ? $config['redix-prefix'] . ':' : '') . 'jwt-key';
+			$redisIndex = ($config['redis-prefix'] ? $config['redis-prefix'] . ':' : '') . 'jwt-key';
 			$key = $config['redis-class']::get($redisIndex);
 
 			if (!$key) {
