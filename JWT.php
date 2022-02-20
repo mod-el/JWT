@@ -42,7 +42,7 @@ class JWT extends Module
 
 			if (!$key) {
 				$key = $this->model->_RandToken->getToken('jwt', 64);
-				$config['redis-class']::get($redisIndex, $key);
+				$config['redis-class']::set($redisIndex, $key);
 			}
 		} elseif (file_exists(INCLUDE_PATH . 'model' . DIRECTORY_SEPARATOR . 'JWT' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'token-key.php')) {
 			$key = file_get_contents(INCLUDE_PATH . 'model' . DIRECTORY_SEPARATOR . 'JWT' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'token-key.php');
