@@ -36,13 +36,12 @@ class JWT extends Module
 		$config = $this->retrieveConfig();
 		if ($config['fixed-key']) {
 			return $config['fixed-key'];
-		} elseif ($config['redis-class']) {
-			$redisIndex = ($config['redis-prefix'] ? $config['redis-prefix'] . ':' : '') . 'jwt-key';
-			$key = $config['redis-class']::get($redisIndex);
+		} elseif ($config['redis']) {
+			$key = $this->model->_Redis->get('jwt-key');
 
 			if (!$key) {
 				$key = $this->model->_RandToken->getToken('jwt', 64);
-				$config['redis-class']::set($redisIndex, $key);
+				$this->model->_Redis->set('jwt-key', $key);
 			}
 		} elseif (file_exists(INCLUDE_PATH . 'model' . DIRECTORY_SEPARATOR . 'JWT' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'token-key.php')) {
 			$key = file_get_contents(INCLUDE_PATH . 'model' . DIRECTORY_SEPARATOR . 'JWT' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'token-key.php');

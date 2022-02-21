@@ -12,8 +12,7 @@ class Config extends Module_Config
 			return '<?php
 $config = [
 	\'fixed-key\' => null,
-	\'redis-class\' => null,
-	\'redis-prefix\' => null,
+	\'redis\' => false,
 ];
 ';
 		});
@@ -21,6 +20,9 @@ $config = [
 
 	public function getConfigData(): ?array
 	{
-		return [];
+		return [
+			'fixed-key' => ['label' => 'Chiave JWT fissa?', 'default' => null],
+			'redis' => ['label' => 'Uso di Redis y/n', 'default' => false],
+		];
 	}
 }
