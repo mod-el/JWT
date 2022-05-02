@@ -1,6 +1,6 @@
 {
 	"name": "JWT",
-	"description": "JWT handler (requires firebase/php-jwt via Composer)",
+	"description": "DEPRECATED (use model/jwt)",
 	"version": "3.0.0",
 	"dependencies": {
 		"Core": ">=3.0.0",
