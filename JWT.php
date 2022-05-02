@@ -3,6 +3,7 @@
 use Firebase\JWT\Key;
 use Model\Core\Module;
 use Firebase\JWT\JWT as FirebaseJWT;
+use Model\Redis\Redis;
 
 class JWT extends Module
 {
@@ -37,11 +38,11 @@ class JWT extends Module
 		if ($config['fixed-key']) {
 			return $config['fixed-key'];
 		} elseif ($config['redis']) {
-			$key = $this->model->_Redis->get('jwt-key');
+			$key = Redis::get('jwt-key');
 
 			if (!$key) {
 				$key = $this->model->_RandToken->getToken('jwt', 64);
-				$this->model->_Redis->set('jwt-key', $key);
+				$key = Redis::set('jwt-key', $key);
 			}
 		} elseif (file_exists(INCLUDE_PATH . 'model' . DIRECTORY_SEPARATOR . 'JWT' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'token-key.php')) {
 			$key = file_get_contents(INCLUDE_PATH . 'model' . DIRECTORY_SEPARATOR . 'JWT' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'token-key.php');
